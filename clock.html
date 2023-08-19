@@ -1,0 +1,145 @@
+<!-- original : https://codepen.io/SeanNorton/pen/LWBXQL -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Bebas+Neue" rel="stylesheet">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>greeting2</title>
+
+    <style>
+
+        /*CSS RESETS*/
+
+body{
+    background-color: #fff;
+    line-height: 1.6;
+
+}
+
+h1 {
+    margin-top: 0;
+}
+
+
+/*CSS START*/
+
+.full-table {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+
+.card {
+    padding: 10px 25px 10px 25px;
+    border-radius: 10px;
+    background: #7aab52;
+    width: 100vw;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    gap: 10rem;
+}
+
+.clock {
+    display: inline;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 2em;
+   
+}
+
+.time {
+    display: inline;
+    min-width: 37px;   
+}
+
+.date {
+    display: inline;
+    min-width: 162px;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 2em;
+    padding-right: 30px;
+}
+
+.greet{    
+    display:inline;
+    font-family: 'Dancing Script', cursive;
+    font-size: 2rem;
+    padding-right: 30px;
+}
+
+    </style>
+</head>
+<body>
+    <link href="https://fonts.googleapis.com/css?family=Lobster|Roboto:400,700" rel="stylesheet">
+
+<div class="full-table">    
+    <div class="card">
+      <div class="greet" id="greet"></div>
+      <div class="date" id="date"></div>
+      <div class="clock">
+        <div class="time" id="hour"></div>
+      </div>
+    </div>
+</div>
+
+<script>
+function displayGreetings(today){
+        hrs = today.getHours();
+        name=""
+        if (hrs < 12)
+            greet = 'Buen día!  '+name;
+        else if (hrs >= 12 && hrs <= 17)
+            greet = 'Buenas tardes! '+name;
+        else if (hrs >= 17 && hrs <= 24)
+            greet = 'Buenas noches!  '+name;
+        document.getElementById('greet').innerHTML = greet;
+
+    }
+
+    function displayDate(today) {  
+       
+        const days = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+        const monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+];
+
+        var dayName = days[today.getDay()];
+        var monthName = monthNames[today.getMonth()];
+        var date = today.getDate();
+        document.getElementById('date').innerHTML =dayName+", "+date+" de "+monthName;
+
+    }
+
+ 
+    function displayYear(today) {
+
+        var hour = today.getFullYear();
+       
+       
+        document.getElementById('hour').innerHTML = hour;
+    }
+
+
+    function padZeros(num) {
+        if (num < 10) {
+            num = '0' + num
+        };
+        return num;
+    }
+
+    function displayWidget() {
+        var today = new Date();
+        displayGreetings(today);
+        displayDate(today);
+        displayYear(today);
+        setTimeout(displayWidget, 500);
+    }
+
+    displayWidget()
+// END
+</script>
+
+</body>
+</html>
